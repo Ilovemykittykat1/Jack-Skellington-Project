@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jack's Spooky Products</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <style>
+        nav {
+            background: black;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: red;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-family: Arial, sans-serif;
+        }
+        nav ul li a:hover {
+            text-shadow: 0 0 5px white;
+        }
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+        }
+        .products-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            padding: 20px;
+        }
+        .product {
+            background: rgba(255, 0, 0, 0.1);
+            border: 2px solid red;
+            border-radius: 10px;
+            box-shadow: 0 0 10px red;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            min-height: 400px;
+        }
+        .product img {
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            display: block;
+            margin: 0 auto;
+        }
+        .product button {
+            background-color: red;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            text-shadow: 0 0 5px black;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+    </nav>
+    
+    <h1>Jack's Spooky Products</h1>
+    <p>Browse our collection of hauntingly good merchandise straight from Halloween Town!</p>
+    
+    <div class="products-container" id="products">
+        <div class="product" data-name="Jack Skellington Figure" data-price="19.99">
+            <img src="images/figure.png" alt="Jack Skellington Figure">
+            <h2>Jack Skellington Figure</h2>
+            <p>A collectible figurine of Jack Skellington, perfect for display.</p>
+            <button onclick="addToCart(this)">Buy Now - $19.99</button>
+        </div>
+        <div class="product" data-name="Halloween Pumpkin" data-price="9.99">
+            <img src="images/pumkin.png" alt="Pumpkin Decor">
+            <h2>Halloween Pumpkin</h2>
+            <p>Spooky pumpkin decoration to bring Halloween Town to your home.</p>
+            <button onclick="addToCart(this)">Buy Now - $9.99</button>
+        </div>
+        <div class="product" data-name="Jack Plush Toy" data-price="14.99">
+            <img src="images/smallplush.png" alt="Small Plush Toy">
+            <h2>Jack Plush Toy</h2>
+            <p>A soft and cuddly Jack Skellington plush for fans of all ages.</p>
+            <button onclick="addToCart(this)">Buy Now - $14.99</button>
+        </div>
+        <div class="product" data-name="Red Coffin Gift Box" data-price="12.99">
+            <img src="images/redcoffin.png" alt="Red Coffin Box">
+            <h2>Red Coffin Gift Box</h2>
+            <p>A stylish red coffin-shaped box for storing spooky treasures.</p>
+            <button onclick="addToCart(this)">Buy Now - $12.99</button>
+        </div>
+    </div>
+
+    <script>
+        function addToCart(button) {
+            let product = button.parentElement;
+            let name = product.getAttribute("data-name");
+            let price = parseFloat(product.getAttribute("data-price"));
+            
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name: name, price: price, quantity: 1 });
+            }
+            
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(`${name} has been added to your cart!`);
+        }
+    </script>
+</body>
+</html>

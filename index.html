@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jack Skellington</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <style>
+        nav {
+            background: black;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: red;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-family: 'Creepster', cursive;
+        }
+        nav ul li a:hover {
+            text-shadow: 0 0 5px white;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="Products.html">Products</a></li>
+        </ul>
+    </nav>
+    <h1>Welcome to Halloween Town</h1>
+    <img src="images/jack.png" alt="Jack Skellington">
+    <p>"Why does nothing ever turn out like it should?"</p>
+    <button onclick="location.href='darkness.html'" style="background-color: red; color: white; font-size: 1.5rem; border: none; padding: 10px 20px; margin-top: 20px; cursor: pointer; font-family: 'Creepster', cursive; text-shadow: 0 0 5px black;">Dare if You Enter</button>
+    <script>
+        function enterDare() {
+            alert('You have been warned! Welcome to the darkness...');
+        }
+    </script>
+</body>
+</html>
