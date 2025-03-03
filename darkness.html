@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter the Darkness</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="fog"></div>
+    <img src="images/fun.png" alt="Jack Skellington">
+    <h1>You Have Entered the Darkness</h1>
+    <p id="creepyText"></p>
+    <button onclick="goBack()" style="background-color: red; color: white; font-size: 1.5rem; border: none; padding: 10px 20px; margin-top: 20px; cursor: pointer; font-family: 'Creepster', cursive; text-shadow: 0 0 5px black;">Go Back</button>
+    
+    <audio id="spookyAudio" autoplay loop>
+        <source src="sounds/spooky.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <audio id="whisper1" src="sounds/whisper1.mp3"></audio>
+    <audio id="whisper2" src="sounds/whisper2.mp3"></audio>
+    
+    <script>
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const audio = document.getElementById("spookyAudio");
+            audio.volume = 0.5; 
+            
+            document.body.addEventListener("click", function() {
+                if (audio.paused) {
+                    audio.play();
+                }
+            });
+
+            const text = "They are watching you...";
+            let index = 0;
+
+            function typeText() {
+                if (index < text.length) {
+                    document.getElementById("creepyText").innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(typeText, 150);
+                }
+            }
+            setTimeout(typeText, 3000);
+
+            function playRandomWhisper() {
+                let whispers = [document.getElementById("whisper1"), document.getElementById("whisper2")];
+                let randomWhisper = whispers[Math.floor(Math.random() * whispers.length)];
+                randomWhisper.play();
+            }
+            setInterval(playRandomWhisper, Math.random() * (15000 - 5000) + 5000);
+        });
+    </script>
+</body>
+</html>
